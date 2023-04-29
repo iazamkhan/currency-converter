@@ -1,7 +1,36 @@
 .container {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     text-align: center;
     min-height: 100vh;
+}
+
+.label {
+    font-weight: 450;
+    font-size: 1.1rem;
+}
+
+.label2 {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.first-input-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+}
+
+.second-input-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.dropdown {
+    margin-left: 12px;
 }
