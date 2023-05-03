@@ -6,8 +6,8 @@ import './Converter.css'
 function Converter() {
 
   const [currencies, setCurrencies] = useState([])
-  const [convertFrom, setConvertFrom] = useState("");
-  const [convertTo, setConvertTo] = useState("");
+  const [convertFrom, setConvertFrom] = useState(1);
+  const [convertTo, setConvertTo] = useState();
   const [fromCurrency, setFromCurrency] = useState("USD");
   const [toCurrency, setToCurrency] = useState("INR");
 
@@ -20,7 +20,7 @@ function Converter() {
     //   setFromCurrency(toCurrency)
     //   setToCurrency(fromCurrency)
     // }
-  }, [fromCurrency, toCurrency, convertFrom, convertTo])
+  }, [convertFrom, fromCurrency, toCurrency])
 
   useEffect(() => {
     axios.get("https://v6.exchangerate-api.com/v6/4fb6bd0e2e87f09d9e6dee49/latest/USD")
@@ -42,7 +42,7 @@ function Converter() {
       <p className="label">{convertFrom !== "" ? convertFrom : 1} {fromCurrency !== "" ? fromCurrency : 'USD'} equals to</p>
       <p className="label2">{convertTo} {toCurrency !== "" ? toCurrency : "INR"}</p>
       <div className="first-input-row">
-        <input className="text-box" type="number" onChange={(e) => { setConvertFrom(e.target.value) }} value={convertTo === "" ? 1 : convertFrom}></input>
+        <input className="text-box" type="number" onChange={(e) => { setConvertFrom(e.target.value) }} value={convertFrom}></input>
         <select className="dropdown" onChange={(e) => setFromCurrency(e.target.value)}>
           {currencies.map(cur => (
             <option value={cur}>{cur}</option>
@@ -53,8 +53,8 @@ function Converter() {
         <input className="text-box" type="number" onChange={(e) => {
           setConvertTo
             (e.target.value)
-        }} value={convertFrom === "" ? "" : convertTo}></input>
-        <select className="dropdown" onChange={(e) => setToCurrency(e.target.value)}>
+        }} value={convertTo}></input>
+        <select className="dropdown" value={toCurrency !== "" ? toCurrency : "INR"} onChange={(e) => setToCurrency(e.target.value)}>
           {currencies?.map(cur => (
             <option value={cur}>{cur}</option>
           ))}
